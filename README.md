@@ -1,5 +1,3 @@
-# My Neovim Config for Java Develope
-
 ## ColorScheme
     * Molokai 
 
