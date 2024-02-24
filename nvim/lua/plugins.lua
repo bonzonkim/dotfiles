@@ -66,5 +66,7 @@ packer.startup(function(use)
   use 'tidalcycles/vim-tidal'
   use 'oxfist/night-owl.nvim'
   use 'brenoprata10/nvim-highlight-colors'
+  use 'bluz71/vim-nightfly-colors'
 
 end)
+
