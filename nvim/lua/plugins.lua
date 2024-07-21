@@ -36,7 +36,6 @@ packer.startup(function(use)
   use 'williamboman/mason-lspconfig.nvim'
   
   --jdtls
-  use 'mfussenegger/nvim-jdtls'
   use 'nvim-lua/plenary.nvim'
 
   use 'onsails/lspkind.nvim'
@@ -58,9 +57,15 @@ packer.startup(function(use)
   use 'rebelot/kanagawa.nvim'
   use 'iamcco/markdown-preview.nvim'
   use 'tidalcycles/vim-tidal'
-  use 'oxfist/night-owl.nvim'
   use 'brenoprata10/nvim-highlight-colors'
-  use 'bluz71/vim-nightfly-colors'
+
+  use {
+   'L3MON4D3/LuaSnip',
+    after = 'nvim-cmp',
+    config = function() require('config.snippets')end,
+  }
+  use { 'saadparwaiz1/cmp_luasnip' }
+  use { 'towolf/vim-helm' }
 
 end)
 

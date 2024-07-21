@@ -11,7 +11,7 @@ local workspace_dir = home .. '/bonzonkim/github.com/' .. project_name
 local root_markers = {'gradlew', 'mvnw', '.git'}
 local root_dir = require('jdtls.setup').find_root(root_markers)
 
-local language_server_dir = '/opt/homebrew/Cellar/jdtls/1.26.0/libexec'
+local language_server_dir = '/opt/homebrew/Cellar/jdtls/1.32.0/libexec'
 
 -- Helper function for creating keymaps
 function nnoremap(rhs, lhs, bufopts, desc)
@@ -53,14 +53,14 @@ local config = {
     '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
 
     -- 💀
-    '-jar', language_server_dir .. '/plugins/org.eclipse.equinox.launcher_1.6.500.v20230717-2134.jar',
+    '-jar', language_server_dir .. '/plugins/org.eclipse.equinox.launcher_1.6.700.v20231214-2017.jar',
          -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                                       ^^^^^^^^^^^^^^
          -- Must point to the                                                     Change this to
          -- eclipse.jdt.ls installation                                           the actual version
 
     -- lombok 쓰려면 해당 라인 수정
     -- https://bit.ly/3MJ78PQ
-     '-javaagent:'.. home .. '/.local/share/nvim/mason/packages/jdtls/lombok.jar',
+     '-javaagent:'.. home .. '/Users/b9/.local/share/eclipse/lombok.jar',
 
     -- 💀
     '-configuration', language_server_dir .. '/config_mac',

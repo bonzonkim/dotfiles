@@ -35,16 +35,24 @@ require'lspconfig'.html.setup {}
 nvim_lsp.tsserver.setup {}
 nvim_lsp.tailwindcss.setup {}
 nvim_lsp.pyright.setup {}
-nvim_lsp.terraformls.setup {}
 nvim_lsp.gopls.setup{}
+nvim_lsp.yamlls.setup{}
 
-require'lspconfig'.bashls.setup{
+nvim_lsp.bashls.setup{
     cmd = { "bash-language-server", "start" },
     filetypes={ "sh" }
 }
 
+vim.cmd([[
+  autocmd BufRead,BufNewFile *.tf set filetype=terraform
+  autocmd BufRead,BufNewFile *.tfvars set filetype=terraform
+]])
 
--- vim.api.nvim_create_autocmd({"BufWritePre"}, {
---   pattern = {"*.tf", "*.tfvars"},
---   callback = vim.lsp.buf.formatting_sync,
--- })
+nvim_lsp.terraformls.setup{}
+vim.api.nvim_create_autocmd({"BufWritePre"}, {
+  pattern = {"*.tf", "*.tfvars"},
+  callback = function()
+    vim.lsp.buf.format()
+  end,
+})
+
