@@ -36,6 +36,7 @@ packer.startup(function(use)
   use 'williamboman/mason-lspconfig.nvim'
   
   --jdtls
+  use 'mfussenegger/nvim-jdtls'
   use 'nvim-lua/plenary.nvim'
 
   use 'onsails/lspkind.nvim'
@@ -59,11 +60,20 @@ packer.startup(function(use)
   use 'tidalcycles/vim-tidal'
   use 'brenoprata10/nvim-highlight-colors'
 
-  use {
-   'L3MON4D3/LuaSnip',
-    after = 'nvim-cmp',
-    config = function() require('config.snippets')end,
-  }
+--  use {
+--   'L3MON4D3/LuaSnip',
+--    after = 'nvim-cmp',
+--    config = function() require('config.snippets')end,
+--  }
+
+--  use({
+--    "glacambre/firenvim",
+--    run = function() fn["firenvim#install"](0) end,
+--    opt = true,
+--    setup = [[vim.cmd('packadd firenvim')]],
+--  })
+  use { 'glacambre/firenvim' }
+
   use { 'saadparwaiz1/cmp_luasnip' }
   use { 'towolf/vim-helm' }
 

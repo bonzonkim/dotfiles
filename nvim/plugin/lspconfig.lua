@@ -32,7 +32,7 @@ require'lspconfig'.html.setup {}
 --   cmd = { "typescript-language-server", "--stdio" }
 -- }
 
-nvim_lsp.tsserver.setup {}
+nvim_lsp.ts_ls.setup {}
 nvim_lsp.tailwindcss.setup {}
 nvim_lsp.pyright.setup {}
 nvim_lsp.gopls.setup{}
@@ -55,4 +55,3 @@ vim.api.nvim_create_autocmd({"BufWritePre"}, {
     vim.lsp.buf.format()
   end,
 })
-

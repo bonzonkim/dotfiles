@@ -8,5 +8,5 @@ mason.setup({
 })
 
 lspconfig.setup {
-  ensure_installed = { "tsserver", "tailwindcss", "pyright", "terraformls" },
+  ensure_installed = { "ts_ls", "tailwindcss", "pyright", "terraformls" },
 }
