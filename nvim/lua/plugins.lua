@@ -77,5 +77,10 @@ packer.startup(function(use)
   use { 'saadparwaiz1/cmp_luasnip' }
   use { 'towolf/vim-helm' }
 
+  use { 'karb94/neoscroll.nvim' }
+
+  use { "jake-stewart/multicursor.nvim", branch = "1.0" }
+  use { "bluz71/vim-moonfly-colors", name = "moonfly" }
+    
 end)
 
