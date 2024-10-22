@@ -1,5 +1,15 @@
 local status, ts = pcall(require, "nvim-treesitter.configs")
 if (not status) then return end
+vim.filetype.add({
+  extension = {
+    gotmpl = 'gotmpl',
+  },
+  pattern = {
+    [".*/templates/.*%.tpl"] = "helm",
+    [".*/templates/.*%.ya?ml"] = "helm",
+    ["helmfile.*%.ya?ml"] = "helm",
+  },
+})
 
 ts.setup {
   highlight = {
