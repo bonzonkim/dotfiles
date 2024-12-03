@@ -1,0 +1,131 @@
+{
+  "assistant": {
+    "default_model": {
+      "provider": "zed.dev",
+      "model": "claude-3-5-sonnet-latest"
+    },
+    "version": "2"
+  },
+  "theme": "Tokyo Night Storm",
+  "base_keymap": "VSCode",
+  "buffer_font_family": "MesloLGL Nerd Font",
+  "buffer_font_size": 15,
+  "vim_mode": true,
+  "relative_line_numbers": false,
+  "cursor_blink": false,
+  "scrollbar": {
+    "show": "never"
+  },
+  "buffer_line_height": {
+    "custom": 1.7
+  },
+  "terminal": {
+    "font_family": "MesloLGL Nerd Font",
+    "font_size": 15,
+    "line_height": {
+      "custom": 1.7
+    }
+  },
+  "inlay_hints": {
+    "enabled": true
+  },
+  "lsp": {
+    "gopls": {
+      "initialization_options": {
+        "gofumpt": true,
+        "usePlaceholders": false,
+        "staticcheck": true
+      },
+      "hints": {
+        "assignVariableTypes": true,
+        "compositeLiteralFields": true,
+        "compositeLiteralTypes": true,
+        "constantValues": true,
+        "functionTypeParameters": true,
+        "parameterNames": false,
+        "rangeVariableTypes": true
+      }
+    }
+  },
+  "typescript-language-server": {
+    "initialization_options": {
+      "preferences": {
+        "includeInlayParameterNameHints": "all",
+        "includeInlayParameterNameHintsWhenArgumentMatchesName": true,
+        "includeInlayFunctionParameterTypeHints": true,
+        "includeInlayVariableTypeHints": true,
+        "includeInlayVariableTypeHintsWhenTypeMatchesName": true,
+        "includeInlayPropertyDeclarationTypeHints": true,
+        "includeInlayFunctionLikeReturnTypeHints": true,
+        "includeInlayEnumMemberValueHints": true
+      }
+    }
+  },
+  "yaml-language-server": {
+    "settings": {
+      "yaml": {
+        "keyOrdering": true,
+        "format": {
+          "singleQuote": true
+        },
+        "schemas": {
+          "http://json.schemastore.org/composer": ["/*"],
+          "../relative/path/schema.json": ["/config*.yaml"]
+        }
+      }
+    }
+  },
+  "pyright": {
+    "settings": {
+      "python.analysis": {
+        "diagnosticMode": "workspace",
+        "typeCheckingMode": "strict"
+      },
+      "python": {
+        "pythonPath": ".venv/bin/python"
+      }
+    }
+  },
+  "ansible-language-server": {
+    "settings": {
+      "ansible": {
+        "path": "ansible"
+      },
+      "executionEnvironment": {
+        "enabled": false
+      },
+      "python": {
+        "interpreterPath": "python3"
+      },
+      "validation": {
+        "enabled": true,
+        // To enable linting, manually install ansible-lint and make sure it is your PATH
+        "lint": {
+          "enabled": true,
+          "path": "ansible-lint"
+        }
+      }
+    }
+  },
+  "file_types": {
+    "Ansible": [
+      "**.ansible.yml",
+      "**.ansible.yaml",
+      "**/defaults/*.yml",
+      "**/defaults/*.yaml",
+      "**/meta/*.yml",
+      "**/meta/*.yaml",
+      "**/tasks/*.yml",
+      "**/tasks/*.yml",
+      "**/tasks/*.yaml",
+      "**/handlers/*.yml",
+      "**/handlers/*.yaml",
+      "**/group_vars/*.yml",
+      "**/group_vars/*.yaml",
+      "**/playbooks/*.yaml",
+      "**/playbooks/*.yml",
+      "**playbook*.yaml",
+      "**playbook*.yml"
+    ]
+  }
+}
