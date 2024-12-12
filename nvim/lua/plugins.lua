@@ -27,7 +27,7 @@ packer.startup(function(use)
     'nvim-treesitter/nvim-treesitter', -- language parser for syntax highlightings
     run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
   }
-  use 'nvim-tree/nvim-tree.lua'
+--  use 'nvim-tree/nvim-tree.lua'
 
   use "lukas-reineke/indent-blankline.nvim" -- Indent hightlighting
 
@@ -88,6 +88,32 @@ packer.startup(function(use)
   use { "bluz71/vim-moonfly-colors", name = "moonfly" }
   use { "EdenEast/nightfox.nvim" }
   use {'Tsuzat/NeoSolarized.nvim'}
+
+  use {
+      "nvim-neo-tree/neo-tree.nvim",
+      branch = "v3.x",
+      requires = {
+          "nvim-lua/plenary.nvim",
+          "nvim-tree/nvim-web-devicons",
+          "MunifTanjim/nui.nvim",
+          {
+              's1n7ax/nvim-window-picker',
+              version = '2.*',
+              config = function()
+                  require 'window-picker'.setup({
+                      filter_rules = {
+                          include_current_win = false,
+                          autoselect_one = true,
+                          bo = {
+                              filetype = { 'neo-tree', "neo-tree-popup", "notify" },
+                              buftype = { 'terminal', "quickfix" },
+                          },
+                      },
+                  })
+              end,
+          },
+      }
+  }
     
 end)
 
