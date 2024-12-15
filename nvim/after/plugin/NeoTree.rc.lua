@@ -134,9 +134,9 @@ vim.fn.sign_define("DiagnosticSignHint", { text = "󰌵", texthl = "DiagnosticSi
     filesystem = {
         filtered_items = {
             visible = false,
-            hide_dotfiles = true,
-            hide_gitignored = true,
-            hide_hidden = true,
+            hide_dotfiles = false,
+            hide_gitignored = false,
+            hide_hidden = false,
             hide_by_name = {},
             hide_by_pattern = {},
             always_show = {},
