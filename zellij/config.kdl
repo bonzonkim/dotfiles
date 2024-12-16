@@ -109,7 +109,7 @@ keybinds clear-defaults=true {
             }
             SwitchToMode "normal"
         }
-        bind "Ctrl o" { SwitchToMode "normal"; }
+        bind "Ctrl v" { SwitchToMode "normal"; }
         bind "p" {
             LaunchOrFocusPlugin "plugin-manager" {
                 floating true
@@ -142,7 +142,7 @@ keybinds clear-defaults=true {
         bind "Ctrl h" { SwitchToMode "move"; }
     }
     shared_except "locked" "session" {
-        bind "Ctrl o" { SwitchToMode "session"; }
+        bind "Ctrl v" { SwitchToMode "session"; }
     }
     shared_except "locked" "scroll" {
         bind "Alt left" { MoveFocusOrTab "left"; }
@@ -179,8 +179,8 @@ keybinds clear-defaults=true {
         bind "x" { CloseFocus; SwitchToMode "normal"; }
     }
     shared_among "scroll" "search" {
-        bind "PageDown" { PageScrollDown; }
-        bind "PageUp" { PageScrollUp; }
+        bind "Ctrl d" { PageScrollDown; }
+        bind "Ctrl u" { PageScrollUp; }
         bind "left" { PageScrollUp; }
         bind "down" { ScrollDown; }
         bind "up" { ScrollUp; }
@@ -270,7 +270,8 @@ load_plugins {
 // Choose the theme that is specified in the themes section.
 // Default: default
 // 
-// theme "dracula"
+//theme "kanagawa"
+theme "tokyo-night"
  
 // Choose the base input mode of zellij.
 // Default: normal
