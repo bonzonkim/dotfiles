@@ -11,7 +11,7 @@ local workspace_dir = home .. '/bonzonkim/github.com/' .. project_name
 local root_markers = {'gradlew', 'mvnw', '.git'}
 local root_dir = require('jdtls.setup').find_root(root_markers)
 
-local language_server_dir = '/opt/homebrew/Cellar/jdtls/1.32.0/libexec'
+local language_server_dir = '/opt/homebrew/Cellar/jdtls/1.42.0/libexec'
 
 -- Helper function for creating keymaps
 function nnoremap(rhs, lhs, bufopts, desc)
@@ -53,7 +53,7 @@ local config = {
     '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
 
     -- 💀
-    '-jar', language_server_dir .. '/plugins/org.eclipse.equinox.launcher_1.6.700.v20231214-2017.jar',
+    '-jar', language_server_dir .. '/plugins/org.eclipse.equinox.launcher_1.6.900.v20240613-2009.jar',
          -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                                       ^^^^^^^^^^^^^^
          -- Must point to the                                                     Change this to
          -- eclipse.jdt.ls installation                                           the actual version
