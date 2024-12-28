@@ -60,7 +60,8 @@ local config = {
 
     -- lombok 쓰려면 해당 라인 수정
     -- https://bit.ly/3MJ78PQ
-     '-javaagent:'.. home .. '/Users/b9/.local/share/eclipse/lombok.jar',
+     '-javaagent:'.. home .. '/.local/share/eclipse/lombok.jar',
+     '-Xbootclasspath/a:'.. home .. '/.local/share/eclipse/lombok.jar',
 
     -- 💀
     '-configuration', language_server_dir .. '/config_mac',
