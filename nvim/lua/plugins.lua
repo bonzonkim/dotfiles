@@ -114,6 +114,9 @@ packer.startup(function(use)
           },
       }
   }
-    
+  use {
+    'MeanderingProgrammer/render-markdown.nvim',
+     dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
+  }
 end)
 
