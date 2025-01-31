@@ -118,5 +118,9 @@ packer.startup(function(use)
     'MeanderingProgrammer/render-markdown.nvim',
      dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' },
   }
+  use {
+    'folke/noice.nvim',
+    dependencies = { 'MunifTanjim/nui.nvim' },
+  }
 end)
 
