@@ -9,9 +9,9 @@ return {
   enable_tab_bar = false,
   font = wezterm.font("MesloLGS Nerd Font", {weight="Bold", stretch="Normal", style="Normal"}),
   font_size = 15.0,
-  colors = {
-    cursor_bg = "#808080"
-  },
+--  colors = {
+--    cursor_bg = "#808080"
+--  },
 
 
   -- Transparency and blur settings
