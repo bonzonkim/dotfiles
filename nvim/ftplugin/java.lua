@@ -6,7 +6,7 @@ local home = os.getenv('HOME')
 local java_home = '/Users/b9/.asdf/installs/java/adoptopenjdk-17.0.6+10'
 
 -- Workspace 위치 바꾸는 곳
-local workspace_dir = home .. '/bonzonkim/github.com/' .. project_name
+local workspace_dir = home .. '/bonzonkim/github.com/jdtls-workspace' .. project_name
 
 local root_markers = {'gradlew', 'mvnw', '.git'}
 local root_dir = require('jdtls.setup').find_root(root_markers)
