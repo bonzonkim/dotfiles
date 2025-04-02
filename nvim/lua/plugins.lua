@@ -122,5 +122,10 @@ packer.startup(function(use)
     'folke/noice.nvim',
     dependencies = { 'MunifTanjim/nui.nvim' },
   }
+
+  use({
+    'Wansmer/treesj',
+    requires = { 'nvim-treesitter/nvim-treesitter' },
+  })
 end)
 
