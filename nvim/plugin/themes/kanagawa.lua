@@ -1,5 +1,7 @@
 --Default options:
-require('kanagawa').setup({
+local status, kanagawa = pcall(require, 'kanagawa')
+if not status then return end
+kanagawa.setup({
     compile = false,             -- enable compiling the colorscheme
     undercurl = true,            -- enable undercurls
     commentStyle = { italic = true },
