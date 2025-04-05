@@ -21,6 +21,7 @@ ts.setup {
     disable = {},
   },
   ensure_installed = {
+    "go",
     "tsx",
     "toml",
     "php",
