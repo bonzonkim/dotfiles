@@ -127,5 +127,9 @@ packer.startup(function(use)
     'Wansmer/treesj',
     requires = { 'nvim-treesitter/nvim-treesitter' },
   })
+
+  use 'ray-x/go.nvim'
+  use 'ray-x/guihua.lua'
+
 end)
 
