@@ -33,7 +33,7 @@ require'lspconfig'.html.setup {}
 -- }
 
 nvim_lsp.ts_ls.setup {}
-nvim_lsp.tailwindcss.setup {}
+nvim_lsp.tailwindcss.setup { filetypes = { 'css','templ' } }
 nvim_lsp.pyright.setup {}
 nvim_lsp.gopls.setup{}
 nvim_lsp.yamlls.setup{}
@@ -42,6 +42,10 @@ nvim_lsp.lua_ls.setup{}
 nvim_lsp.bashls.setup{
     cmd = { "bash-language-server", "start" },
     filetypes={ "sh" }
+}
+nvim_lsp.templ.setup{
+  cmd = { 'templ', 'lsp' },
+  filetypes = { 'templ' },
 }
 
 vim.cmd([[
