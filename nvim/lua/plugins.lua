@@ -131,5 +131,10 @@ packer.startup(function(use)
   use 'ray-x/go.nvim'
   use 'ray-x/guihua.lua'
 
+  use {
+    'Wansmer/symbol-usage.nvim',
+    event = 'LspAttach',
+  }
+
 end)
 
