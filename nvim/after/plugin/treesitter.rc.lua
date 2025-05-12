@@ -28,7 +28,6 @@ ts.setup {
     "python",
     "json",
     "yaml",
-    "swift",
     "css",
     "html",
     "lua"
