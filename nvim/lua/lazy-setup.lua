@@ -82,15 +82,38 @@ require("lazy").setup({
     dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
   },
   {
-    "folke/noice.nvim",
-    dependencies = { "MunifTanjim/nui.nvim" },
+  "folke/noice.nvim",
+  event = "VeryLazy",
+  opts = {
+    -- add any options here
+  },
+  dependencies = {
+    -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+    "MunifTanjim/nui.nvim",
+    -- OPTIONAL:
+    --   `nvim-notify` is only needed, if you want to use the notification view.
+    --   If not available, we use `mini` as the fallback
+    "rcarriga/nvim-notify",
+    }
   },
   {
     "Wansmer/treesj",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
   },
-  { "ray-x/go.nvim" },
-  { "ray-x/guihua.lua" },
+  {
+  "ray-x/go.nvim",
+  dependencies = {  -- optional packages
+    "ray-x/guihua.lua",
+    "neovim/nvim-lspconfig",
+    "nvim-treesitter/nvim-treesitter",
+  },
+  config = function()
+    require("go").setup()
+  end,
+  event = {"CmdlineEnter"},
+  ft = {"go", 'gomod'},
+  build = ':lua require("go.install").update_all_sync()' -- if you need to install/update all binaries
+  },
   {
     "Wansmer/symbol-usage.nvim",
     event = "LspAttach",
@@ -99,4 +122,3 @@ require("lazy").setup({
   install = { colorscheme = { "tokyonight" } },
   checker = { enabled = true },
 })
-
