@@ -15,7 +15,7 @@
   "mason-lspconfig.nvim": { "branch": "main", "commit": "d39a75bbce4b8aad5d627191ea915179c77c100f" },
   "mason.nvim": { "branch": "main", "commit": "7c7318e8bae7e3536ef6b9e86b9e38e74f2e125e" },
   "moonfly": { "branch": "master", "commit": "164888b0140d6a4ba3f5ec5d760d46fb6a417d7a" },
-  "multicursor.nvim": { "branch": "1.0", "commit": "0e00ce4c272e3191b5e07cab36bd49aa32fca675" },
+  "multicursor.nvim": { "branch": "1.0", "commit": "c731e52cee7b69fa05915affb09ba65e7cd31fa9" },
   "neo-tree.nvim": { "branch": "v3.x", "commit": "f481de16a0eb59c985abac8985e3f2e2f75b4875" },
   "neoscroll.nvim": { "branch": "master", "commit": "f957373912e88579e26fdaea4735450ff2ef5c9c" },
   "nightfox.nvim": { "branch": "main", "commit": "ba47d4b4c5ec308718641ba7402c143836f35aa9" },
