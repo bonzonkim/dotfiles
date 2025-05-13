@@ -5,4 +5,4 @@ treesj.setup({
   max_join_length = 240,
 })
 
-vim.keymap.set("n", "<C-m>", treesj.toggle, { desc = "Toggle Join/Split" })
+vim.keymap.set("n", "<C-q>", treesj.toggle, { desc = "Toggle Join/Split" })
