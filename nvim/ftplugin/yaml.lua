@@ -25,10 +25,10 @@ lsp.yamlls.setup {
         ["https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.30.0-standalone-strict/all.json"] = {
           "*.yaml",
           "*.yml",
-          "*/kubernetes/*.yaml",
-          "*/kubernetes/*.yml",
-          "*/kube/*.yaml",
-          "*/kube/*.yml",
+          "kubernetes/*.yaml",
+          "kubernetes/*.yml",
+          "kube/*.yaml",
+          "kube/*.yml",
         },
         ["http://json.schemastore.org/github-workflow"] = ".github/workflows/*",
         ["http://json.schemastore.org/kustomization"] = "kustomization.{yml,yaml}",
@@ -47,7 +47,6 @@ lsp.yamlls.setup {
     },
   },
 }
-
 
 -- Autocompletion
 local cmpStatus, cmp = pcall(require, "cmp")
