@@ -51,17 +51,16 @@ local config = {
     '--add-modules=ALL-SYSTEM',
     '--add-opens', 'java.base/java.util=ALL-UNNAMED',
     '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
+    -- lombok 쓰려면 해당 라인 수정
+    -- https://bit.ly/3MJ78PQ
+     '-javaagent:'.. home .. '/.local/share/eclipse/lombok.jar',
+     '-Xbootclasspath/a:'.. home .. '/.local/share/eclipse/lombok.jar',
 
     -- 💀
     '-jar', language_server_dir .. '/plugins/org.eclipse.equinox.launcher_1.6.900.v20240613-2009.jar',
          -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                                       ^^^^^^^^^^^^^^
          -- Must point to the                                                     Change this to
          -- eclipse.jdt.ls installation                                           the actual version
-
-    -- lombok 쓰려면 해당 라인 수정
-    -- https://bit.ly/3MJ78PQ
-     '-javaagent:'.. home .. '/.local/share/eclipse/lombok.jar',
-     '-Xbootclasspath/a:'.. home .. '/.local/share/eclipse/lombok.jar',
 
     -- 💀
     '-configuration', language_server_dir .. '/config_mac',
