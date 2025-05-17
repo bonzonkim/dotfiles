@@ -6,7 +6,7 @@ local home = os.getenv('HOME')
 local java_home = '/Users/b9/.asdf/installs/java/adoptopenjdk-17.0.6+10'
 
 -- Workspace 위치 바꾸는 곳
-local workspace_dir = home .. '/bonzonkim/github.com/jdtls-workspace' .. project_name
+local workspace_dir = home .. '/bonzonkim/github.com/jdtls-workspace/' .. project_name
 
 local root_markers = {'gradlew', 'mvnw', '.git'}
 local root_dir = require('jdtls.setup').find_root(root_markers)
@@ -23,7 +23,7 @@ local on_attach = function(client, bufnr)
   -- Regular Neovim LSP client keymappings
   local bufopts = { noremap=true, silent=true, buffer=bufnr }
   -- Java extensions provided by jdtls
-  nnoremap("<C-o>", jdtls.organize_imports, bufopts, "Organize imports")
+  nnoremap("<C-i>", jdtls.organize_imports, bufopts, "Organize imports")
   nnoremap("<space>ev", jdtls.extract_variable, bufopts, "Extract variable")
   nnoremap("<space>ec", jdtls.extract_constant, bufopts, "Extract constant")
   vim.keymap.set('v', "<space>em", [[<ESC><CMD>lua require('jdtls').extract_method(true)<CR>]],
