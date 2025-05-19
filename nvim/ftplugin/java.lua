@@ -3,7 +3,8 @@ local jdtls = require('jdtls')
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
 
 local home = os.getenv('HOME')
-local java_home = '/Users/b9/.asdf/installs/java/adoptopenjdk-17.0.6+10'
+--local java_home = '/Users/b9/.asdf/installs/java/adoptopenjdk-17.0.6+10'
+local java_home = '/Users/b9/.asdf/installs/java/zulu-17.40.19'
 
 -- Workspace 위치 바꾸는 곳
 local workspace_dir = home .. '/bonzonkim/github.com/jdtls-workspace/' .. project_name
@@ -54,7 +55,7 @@ local config = {
     -- lombok 쓰려면 해당 라인 수정
     -- https://bit.ly/3MJ78PQ
      '-javaagent:'.. home .. '/.local/share/eclipse/lombok.jar',
-     '-Xbootclasspath/a:'.. home .. '/.local/share/eclipse/lombok.jar',
+     --'-Xbootclasspath/a:'.. home .. '/.local/share/eclipse/lombok.jar',
 
     -- 💀
     '-jar', language_server_dir .. '/plugins/org.eclipse.equinox.launcher_1.6.900.v20240613-2009.jar',
@@ -138,9 +139,9 @@ local config = {
           },
           {
             name = "JavaSE-17",
-            path = home .. "/.asdf/installs/java/adoptopenjdk-17.0.6+10",
+            --path = home .. "/.asdf/installs/java/adoptopenjdk-17.0.6+10",
+            path = home .. "/.asdf/installs/java/zulu-17.40.19",
           },
-          
         }
       }
     }

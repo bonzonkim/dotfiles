@@ -1,0 +1,10 @@
+--local status, yaml = pcall(require, "yaml-companion")
+--if not status then return end
+--local teleStatus, telescope = pcall(require, "telescope")
+--if not teleStatus then return end
+--
+--yaml.setup({
+--  telescope.load_extension("yaml_schema")
+--})
+--local cfg = require("yaml-companion").setup({})
+--require("lspconfig")["yamlls"].setup(cfg)
