@@ -4,8 +4,8 @@ if (not status) then return end
 local act = wezterm.action
 
 return {
---  color_scheme = "Solarized (dark) (terminal.sexy)",
-  color_scheme = "TokyoNight (dark)",
+  --color_scheme = "Solarized (dark) (terminal.sexy)",
+  --color_scheme = "Tokyo Night",
   enable_tab_bar = false,
   font = wezterm.font("MesloLGS Nerd Font", {weight="Bold", stretch="Normal", style="Normal"}),
   font_size = 15.0,
@@ -13,9 +13,18 @@ return {
 --    cursor_bg = "#808080"
 --  },
 
+  background = {
+    {
+      source = {
+        File = "/Users/b9/Desktop/kelly/pics/wallpaper/wallhaven-7pgm59.png",
+      },
+      width = '100%',
+      hsb = { brightness = 0.1 },
+    },
+  },
 
   -- Transparency and blur settings
-  window_background_opacity = 0.8,
+  window_background_opacity = 0.9,
   text_background_opacity = 1.0,
   macos_window_background_blur = 18,
 
