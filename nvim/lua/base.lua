@@ -34,5 +34,6 @@ vim.opt.signcolumn = 'yes'
 vim.api.nvim_exec([[
   autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4 tabstop=4
   autocmd FileType go setlocal noexpandtab shiftwidth=4 softtabstop=4 tabstop=4
+  autocmd FileType java setlocal noexpandtab shiftwidth=4 softtabstop=4 tabstop=4
 ]], false)
 
