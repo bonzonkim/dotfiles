@@ -46,16 +46,6 @@ require("lazy").setup({
   },
   { "folke/tokyonight.nvim" },
   { "rebelot/kanagawa.nvim" },
-  {
-    "iamcco/markdown-preview.nvim",
-    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-    build = "cd app && yarn install",
-    init = function()
-      vim.g.mkdp_filetypes = { "markdown" }
-    end,
-    ft = { "markdown" },
-  },
-  --{ "iamcco/markdown-preview.nvim" },
   { "tidalcycles/vim-tidal" },
   { "brenoprata10/nvim-highlight-colors" },
   {
