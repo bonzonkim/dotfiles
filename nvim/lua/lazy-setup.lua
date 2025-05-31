@@ -128,6 +128,22 @@ require("lazy").setup({
     require("telescope").load_extension("yaml_schema")
     end,
   },
+  {
+    "ramilito/kubectl.nvim",
+    config = function()
+      require("kubectl").setup()
+    end,
+  },
+  {
+  "iamcco/markdown-preview.nvim",
+  cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+  build = "cd app && yarn install",
+  init = function()
+    vim.g.mkdp_filetypes = { "markdown" }
+  end,
+  ft = { "markdown" },
+  },
+  { "mistricky/codesnap.nvim", build = "make" },
 }, {
   install = { colorscheme = { "tokyonight" } },
   checker = { enabled = false },
