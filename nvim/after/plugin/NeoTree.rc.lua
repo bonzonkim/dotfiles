@@ -101,7 +101,7 @@ vim.diagnostic.config({
     },
     commands = {},
     window = {
-        position = "right",
+        position = "left",
         width = 35,
         mapping_options = {
             noremap = true,
