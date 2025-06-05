@@ -4,7 +4,8 @@ local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
 
 local home = os.getenv('HOME')
 --local java_home = '/Users/b9/.asdf/installs/java/adoptopenjdk-17.0.6+10'
-local java_home = '/Users/b9/.asdf/installs/java/zulu-17.40.19'
+--local java_home = '/Users/b9/.asdf/installs/java/zulu-17.40.19'
+local java_home = '/Users/std-bumgu/.asdf/installs/java/temurin-17.0.15+6'
 
 -- Workspace 위치 바꾸는 곳
 local workspace_dir = home .. '/bonzonkim/github.com/jdtls-workspace/' .. project_name
@@ -12,7 +13,8 @@ local workspace_dir = home .. '/bonzonkim/github.com/jdtls-workspace/' .. projec
 local root_markers = {'gradlew', 'mvnw', '.git'}
 local root_dir = require('jdtls.setup').find_root(root_markers)
 
-local language_server_dir = '/opt/homebrew/Cellar/jdtls/1.42.0/libexec'
+--local language_server_dir = '/opt/homebrew/Cellar/jdtls/1.42.0/libexec'
+local language_server_dir = '/opt/homebrew/Cellar/jdtls/1.47.0/libexec'
 
 -- Helper function for creating keymaps
 function nnoremap(rhs, lhs, bufopts, desc)
@@ -58,7 +60,8 @@ local config = {
      --'-Xbootclasspath/a:'.. home .. '/.local/share/eclipse/lombok.jar',
 
     -- 💀
-    '-jar', language_server_dir .. '/plugins/org.eclipse.equinox.launcher_1.6.900.v20240613-2009.jar',
+    --'-jar', language_server_dir .. '/plugins/org.eclipse.equinox.launcher_1.6.900.v20240613-2009.jar',
+    '-jar', language_server_dir .. '/plugins/org.eclipse.equinox.launcher_1.7.0.v20250424-1814.jar',
          -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                                       ^^^^^^^^^^^^^^
          -- Must point to the                                                     Change this to
          -- eclipse.jdt.ls installation                                           the actual version
@@ -133,14 +136,15 @@ local config = {
       -- The `name` is NOT arbitrary, but must match one of the elements from `enum ExecutionEnvironment` in the link above
       configuration = {
         runtimes = {
-          {
-            name = "JavaSE-11",
-            path = home .. "/.asdf/installs/java/zulu-11.62.17",
-          },
+         -- {
+         --   name = "JavaSE-11",
+         --   path = home .. "/.asdf/installs/java/zulu-11.62.17",
+         -- },
           {
             name = "JavaSE-17",
             --path = home .. "/.asdf/installs/java/adoptopenjdk-17.0.6+10",
-            path = home .. "/.asdf/installs/java/zulu-17.40.19",
+            --path = home .. "/.asdf/installs/java/zulu-17.40.19",
+            path = home .. "/.asdf/installs/java/temurin-17.0.15+6",
           },
         }
       }
