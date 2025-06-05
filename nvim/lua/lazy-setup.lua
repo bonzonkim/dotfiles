@@ -144,7 +144,14 @@ require("lazy").setup({
   ft = { "markdown" },
   },
   { "mistricky/codesnap.nvim", build = "make" },
-}, {
+  {
+    "bngarren/checkmate.nvim",
+    ft = "markdown", -- Lazy loads for Markdown files matching patterns in 'files'
+    opts = {
+    },
+  },
+},
+{
   install = { colorscheme = { "tokyonight" } },
   checker = { enabled = false },
 })
