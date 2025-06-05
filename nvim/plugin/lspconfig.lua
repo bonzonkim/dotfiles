@@ -38,6 +38,7 @@ nvim_lsp.pyright.setup {}
 nvim_lsp.gopls.setup{}
 nvim_lsp.yamlls.setup{}
 nvim_lsp.lua_ls.setup{}
+nvim_lsp.htmx.setup{}
 
 nvim_lsp.bashls.setup{
     cmd = { "bash-language-server", "start" },
