@@ -16,7 +16,7 @@ return {
   background = {
     {
       source = {
-        File = "/Users/b9/Desktop/kelly/pics/wallpaper/wallhaven-7pgm59.png",
+        File = "/Users/std-bumgu/Desktop/wallpaper/wallhaven-7pgm59.png",
       },
       width = '100%',
       hsb = { brightness = 0.1 },
