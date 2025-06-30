@@ -1,5 +1,6 @@
 # Font
-font-family = "MesloLGS Nerd Font Mono Bold"
+#font-family = "MesloLGS Nerd Font Mono Bold"
+font-family = "MesloLGS Nerd Font"
 
 ## Window
 ##window-decoration = false
@@ -13,12 +14,12 @@ clipboard-read = "allow"
 clipboard-paste-protection = false
 
 ## Background
-background-opacity = 1
+background-opacity = 0.75
 background-blur-radius = 40
 
 ## Theme
 theme = tokyonight-storm
-font-size = 16
+font-size = 18
 
 adjust-cell-width = 0
 adjust-cell-height = 20%

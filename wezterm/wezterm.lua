@@ -8,7 +8,7 @@ return {
   --color_scheme = "Tokyo Night",
   enable_tab_bar = false,
   font = wezterm.font("MesloLGS Nerd Font", {weight="Bold", stretch="Normal", style="Normal"}),
-  font_size = 15.0,
+  font_size = 18.0,
 --  colors = {
 --    cursor_bg = "#808080"
 --  },
