@@ -23,6 +23,8 @@ end
 local on_attach = function(client, bufnr)
   -- Regular Neovim LSP client keymappings
   local bufopts = { noremap=true, silent=true, buffer=bufnr }
+  require('jdtls').setup_dap({ hotcodereplace = 'auto' })
+  require('jdtls.setup').add_commands()
   -- Java extensions provided by jdtls
   nnoremap("<C-i>", jdtls.organize_imports, bufopts, "Organize imports")
   nnoremap("<space>ev", jdtls.extract_variable, bufopts, "Extract variable")
