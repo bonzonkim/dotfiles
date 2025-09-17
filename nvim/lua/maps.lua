@@ -7,7 +7,7 @@ keymap.set('n', 'x', '"_x')
 keymap.set('n', 'te', ':tabedit')
 
 --netrw
-keymap.set('n', 'net', ':Ve')
+--keymap.set('n', 'net', ':Ve')
 
 -- Resize window
 keymap.set('n', '<C-w><left>', '<C-w><')
