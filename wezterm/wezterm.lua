@@ -13,15 +13,15 @@ return {
 --    cursor_bg = "#808080"
 --  },
 
-  background = {
-    {
-      source = {
-        File = "/Users/b9/Desktop/kelly/pics/wallpaper/wallhaven-7pgm59.png",
-      },
-      width = '100%',
-      hsb = { brightness = 0.1 },
-    },
-  },
+--  background = {
+--    {
+--      source = {
+--        File = "/Users/b9/Desktop/kelly/pics/wallpaper/wallhaven-7pgm59.png",
+--      },
+--      width = '100%',
+--      hsb = { brightness = 0.1 },
+--    },
+--  },
 
   -- Transparency and blur settings
   window_background_opacity = 0.9,
