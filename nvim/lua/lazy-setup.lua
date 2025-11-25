@@ -150,6 +150,7 @@ require("lazy").setup({
     opts = {
     },
   },
+  { "dimaportenko/telescope-simulators.nvim" },
 },
 {
   install = { colorscheme = { "tokyonight" } },
