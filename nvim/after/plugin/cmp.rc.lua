@@ -24,6 +24,7 @@ cmp.setup({
     { name = 'buffer' },
     { name = 'luasnip' },
     { name = 'cmp_luasnip' },
+    { name = 'strudel' },
   }),
   formatting = {
     -- format = lspkind.cmp_format({ with_text = false, maxwidth = 50 })
