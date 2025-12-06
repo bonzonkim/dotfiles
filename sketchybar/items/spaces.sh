@@ -16,7 +16,7 @@ do
     icon="${SPACE_ICONS[i]}"
     icon.padding_left=10
     icon.padding_right=10
-    icon.highlight_color=$MAGENTA
+    icon.highlight_color=$WHITE
     background.color=$BACKGROUND_1
     background.border_color=$BACKGROUND_2
     background.border_width=1

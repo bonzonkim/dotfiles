@@ -1,7 +1,7 @@
 #!/bin/bash
 
-sketchybar --add alias "PandaFan,Item-0" right \
-  --rename "PandaFan,Item-0" vpn_alias \
+sketchybar --add alias "Tailscale,Item-0" right \
+  --rename "Tailscale,Item-0" vpn_alias \
   --set vpn_alias icon.drawing=on \
   label.drawing=off \
   alias.color="$WHITE" \
