@@ -64,7 +64,7 @@ source "$ITEM_DIR/stats_bracket.sh"
 
 # Right
 source "$ITEM_DIR/calendar.sh"
-source "$ITEM_DIR/brew.sh"
+#source "$ITEM_DIR/brew.sh"
 # source "$ITEM_DIR/vpn.sh"
 # source "$ITEM_DIR/github.sh"
 source "$ITEM_DIR/input_source.sh"

@@ -21,5 +21,5 @@ status_bracket=(
 sketchybar --add item battery right \
 	--set battery "${battery[@]}" \
 	--subscribe battery power_source_change system_woke
-sketchybar --add bracket status brew vpn_alias input_source wifi_alias volume_alias battery \
+sketchybar --add bracket status input_source wifi_alias volume_alias battery \
 	--set status "${status_bracket[@]}"

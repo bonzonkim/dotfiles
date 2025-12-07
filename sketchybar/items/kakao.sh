@@ -15,6 +15,7 @@ kakao=(
 	padding_left=1
 	update_freq=3
 	updates=on
+  click_script="open -a KakaoTalk"
 	drawing=off
 )
 
