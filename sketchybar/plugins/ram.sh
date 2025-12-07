@@ -2,22 +2,23 @@
 
 source "$CONFIG_DIR/colors.sh"
 
+# Get page size dynamically (16384 on M1/M2, 4096 on Intel)
+PAGE_SIZE=$(pagesize)
+
 # Get memory info using vm_stat
 VM_STAT=$(vm_stat)
-PAGES_FREE=$(echo "$VM_STAT" | grep "Pages free" | awk '{print $3}' | sed 's/\.//')
-PAGES_ACTIVE=$(echo "$VM_STAT" | grep "Pages active" | awk '{print $3}' | sed 's/\.//')
-PAGES_INACTIVE=$(echo "$VM_STAT" | grep "Pages inactive" | awk '{print $3}' | sed 's/\.//')
-PAGES_WIRED=$(echo "$VM_STAT" | grep "Pages wired" | awk '{print $4}' | sed 's/\.//')
-PAGES_COMPRESSED=$(echo "$VM_STAT" | grep "Pages compressed" | awk '{print $3}' | sed 's/\.//')
+PAGES_ACTIVE=$(echo "$VM_STAT" | grep "Pages active" | awk '{print $3}' | tr -d '.')
+PAGES_WIRED=$(echo "$VM_STAT" | grep "Pages wired down" | awk '{print $4}' | tr -d '.')
+PAGES_COMPRESSED=$(echo "$VM_STAT" | grep "Pages stored in compressor" | awk '{print $5}' | tr -d '.')
 
-# Calculate used memory in GB (page size is 4096 bytes)
+# Calculate used memory in bytes
 USED_PAGES=$((PAGES_ACTIVE + PAGES_WIRED + PAGES_COMPRESSED))
-USED_GB=$(echo "scale=1; $USED_PAGES * 4096 / 1024 / 1024 / 1024" | bc)
+USED_BYTES=$((USED_PAGES * PAGE_SIZE))
 
-# Get total memory
-TOTAL_GB=$(sysctl -n hw.memsize | awk '{print $1/1024/1024/1024}')
+# Get total memory in bytes
+TOTAL_BYTES=$(sysctl -n hw.memsize)
 
 # Calculate percentage
-PERCENTAGE=$(echo "scale=0; $USED_GB / $TOTAL_GB * 100" | bc)
+PERCENTAGE=$((USED_BYTES * 100 / TOTAL_BYTES))
 
-sketchybar --set "$NAME" label="${USED_GB}GB" label.color="$WHITE"
+sketchybar --set "$NAME" label="${PERCENTAGE}%" label.color="$WHITE"

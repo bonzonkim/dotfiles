@@ -11,5 +11,5 @@ stats_bracket=(
 )
 
 # Add bracket after all items are created
-sketchybar --add bracket stats cpu temp ram \
+sketchybar --add bracket stats cpu temp ram network.down network.up \
   --set stats "${stats_bracket[@]}"
