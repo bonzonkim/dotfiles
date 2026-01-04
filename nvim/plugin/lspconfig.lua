@@ -1,61 +1,72 @@
-local status, nvim_lsp = pcall(require, "lspconfig")
-if (not status) then return end
-local protocol = require('vim.lsp.protocol')
+-- LSP Configuration using new vim.lsp.config API (Neovim 0.11+)
 
-local on_attach = function(client, bufnr)
-  -- format on save
-  if client.server_capabilities.documentFormattingProvider then
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      group = vim.api.nvim_create_augroup("Format", { clear = true }),
-      buffer = bufnr,
-      callback = function() vim.lsp.buf.formatting_seq_sync() end
-    })
-  end
-end
-
-
---Enable (broadcasting) snippet capability for completion
+-- Enable snippet capability for completion
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
-require'lspconfig'.html.setup {
- capabilities = capabilities, 
+
+-- HTML
+vim.lsp.config.html = {
+  capabilities = capabilities,
 }
---html
-require'lspconfig'.html.setup {}
 
+-- TypeScript/JavaScript
+vim.lsp.config.ts_ls = {}
 
-
--- TypeScript
--- nvim_lsp.tsserver.setup {
---   -- on_attach = on_attach,
---   filetypes = { "typescript", "typescriptreact", "typescript.tsx","javascript", "javascriptreact" },
---   cmd = { "typescript-language-server", "--stdio" }
--- }
-
-nvim_lsp.ts_ls.setup {}
-nvim_lsp.tailwindcss.setup { filetypes = { 'css','templ' } }
-nvim_lsp.pyright.setup {}
-nvim_lsp.yamlls.setup{}
-nvim_lsp.lua_ls.setup{}
-nvim_lsp.htmx.setup{}
-
-nvim_lsp.bashls.setup{
-    cmd = { "bash-language-server", "start" },
-    filetypes={ "sh" }
+-- Tailwind CSS
+vim.lsp.config.tailwindcss = {
+  filetypes = { 'css', 'templ' },
 }
-nvim_lsp.templ.setup{
+
+-- Python
+vim.lsp.config.pyright = {}
+
+-- YAML
+vim.lsp.config.yamlls = {}
+
+-- Lua
+vim.lsp.config.lua_ls = {}
+
+-- HTMX
+vim.lsp.config.htmx = {}
+
+-- Bash
+vim.lsp.config.bashls = {
+  cmd = { "bash-language-server", "start" },
+  filetypes = { "sh" },
+}
+
+-- Templ
+vim.lsp.config.templ = {
   cmd = { 'templ', 'lsp' },
   filetypes = { 'templ' },
 }
 
+-- Terraform
+vim.lsp.config.terraformls = {}
+
+-- Enable all LSP servers
+vim.lsp.enable({
+  'html',
+  'ts_ls',
+  'tailwindcss',
+  'pyright',
+  'yamlls',
+  'lua_ls',
+  'htmx',
+  'bashls',
+  'templ',
+  'terraformls',
+})
+
+-- Terraform filetype detection
 vim.cmd([[
   autocmd BufRead,BufNewFile *.tf set filetype=terraform
   autocmd BufRead,BufNewFile *.tfvars set filetype=terraform
 ]])
 
-nvim_lsp.terraformls.setup{}
-vim.api.nvim_create_autocmd({"BufWritePre"}, {
-  pattern = {"*.tf", "*.tfvars"},
+-- Format on save for Terraform files
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+  pattern = { "*.tf", "*.tfvars" },
   callback = function()
     vim.lsp.buf.format()
   end,

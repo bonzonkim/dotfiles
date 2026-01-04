@@ -16,9 +16,7 @@
 --}
 
 -- LSP Configuration
-local lspStatus, lsp = pcall(require, "lspconfig")
-if not lspStatus then return end
-lsp.yamlls.setup {
+vim.lsp.config("yamlls", {
   settings = {
     yaml = {
       schemas = {
@@ -46,7 +44,7 @@ lsp.yamlls.setup {
       hover = true,
     },
   },
-}
+})
 
 -- Autocompletion
 local cmpStatus, cmp = pcall(require, "cmp")
