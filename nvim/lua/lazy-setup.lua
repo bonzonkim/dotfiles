@@ -28,7 +28,7 @@ require("lazy").setup({
   { "lukas-reineke/indent-blankline.nvim" },
   { "williamboman/mason.nvim" },
   { "williamboman/mason-lspconfig.nvim" },
-  { "mfussenegger/nvim-jdtls" },
+  --{ "mfussenegger/nvim-jdtls" },
   { "nvim-lua/plenary.nvim" },
   { "onsails/lspkind.nvim" },
   { "kburdett/vim-nuuid" },

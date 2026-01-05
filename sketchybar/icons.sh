@@ -9,6 +9,11 @@ LOCK=􀒳
 BELL=􀋚
 BELL_DOT=􀝗
 
+# System Icons
+CPU=􀫥
+RAM=􀫦
+
+
 # Git Icons
 GIT_ISSUE=􀍷
 GIT_DISCUSSION=􀒤

@@ -2,9 +2,7 @@
 
 ram=(
   script="$PLUGIN_DIR/ram.sh"
-  icon=":ram:"
-  icon.font="sketchybar-app-font:Regular:15.0"
-  icon.font.size=15.0
+  icon="$RAM"
   icon.padding_right=0
   padding_right=0
   padding_left=10

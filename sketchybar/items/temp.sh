@@ -2,9 +2,7 @@
 
 temp=(
   script="$PLUGIN_DIR/temp.sh"
-  icon=":cpu:"
-  icon.font="sketchybar-app-font:Regular:15.0"
-  icon.font.size=15.0
+  icon="$CPU"
   icon.padding_right=0
   padding_right=0
   padding_left=3

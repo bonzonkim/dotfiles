@@ -170,16 +170,6 @@
                         "description": "Swap backspace, \\ and |",
                         "manipulators": [
                             {
-                                "conditions": [
-                                    {
-                                        "identifiers": [
-                                            { "vendor_id": 13364 },
-                                            { "vendor_id": 76 },
-                                            { "vendor_id": 1452 }
-                                        ],
-                                        "type": "device_if"
-                                    }
-                                ],
                                 "from": {
                                     "key_code": "delete_or_backspace",
                                     "modifiers": { "optional": ["any"] }
@@ -188,16 +178,6 @@
                                 "type": "basic"
                             },
                             {
-                                "conditions": [
-                                    {
-                                        "identifiers": [
-                                            { "vendor_id": 13364 },
-                                            { "vendor_id": 76 },
-                                            { "vendor_id": 1452 }
-                                        ],
-                                        "type": "device_if"
-                                    }
-                                ],
                                 "from": {
                                     "key_code": "backslash",
                                     "modifiers": { "optional": ["any"] }
