@@ -169,43 +169,54 @@
                     {
                         "description": "Swap backspace, \\ and |",
                         "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "delete_or_backspace",
-                                    "modifiers": { "optional": ["any"] }
-                                },
-                                "to": [{ "key_code": "backslash" }],
-                                "type": "basic"
+                          {
+                            "type": "basic",
+                            "from": {
+                              "key_code": "delete_or_backspace",
+                              "modifiers": { "optional": ["any"] }
                             },
-                            {
-                                "from": {
-                                    "key_code": "backslash",
-                                    "modifiers": { "optional": ["any"] }
-                                },
-                                "to": [{ "key_code": "delete_or_backspace" }],
-                                "type": "basic"
+                            "to": [{ "key_code": "backslash" }],
+                            "conditions": [
+                              {
+                                "type": "device_unless",
+                                "identifiers": [
+                                  { "vendor_id": 1278, "product_id": 33 }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "type": "basic",
+                            "from": {
+                              "key_code": "backslash",
+                              "modifiers": { "optional": ["any"] }
                             },
-                            {
-                                "conditions": [
-                                    {
-                                        "identifiers": [
-                                            { "vendor_id": 13364 },
-                                            { "vendor_id": 76 },
-                                            { "vendor_id": 1452 }
-                                        ],
-                                        "type": "device_if"
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "backslash",
-                                    "modifiers": {
-                                        "mandatory": ["shift"],
-                                        "optional": ["any"]
-                                    }
-                                },
-                                "to": [{ "key_code": "backslash" }],
-                                "type": "basic"
-                            }
+                            "to": [{ "key_code": "delete_or_backspace" }],
+                            "conditions": [
+                              {
+                                "type": "device_unless",
+                                "identifiers": [
+                                  { "vendor_id": 1278, "product_id": 33 }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "type": "basic",
+                            "from": {
+                              "key_code": "backslash",
+                              "modifiers": { "mandatory": ["shift"], "optional": ["any"] }
+                            },
+                            "to": [{ "key_code": "backslash", "modifiers": ["left_shift"] }],
+                            "conditions": [
+                              {
+                                "type": "device_unless",
+                                "identifiers": [
+                                  { "vendor_id": 1278, "product_id": 33 }
+                                ]
+                              }
+                            ]
+                          }
                         ]
                     },
                     {
