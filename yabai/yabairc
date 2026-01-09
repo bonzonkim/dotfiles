@@ -5,7 +5,7 @@ yabai -m config layout bsp
 yabai -m config window_placement second_child
 
 # padding set to 12px
-yabai -m config top_padding 33
+# yabai -m config top_padding 33
 yabai -m config bottom_padding 6
 yabai -m config left_padding 6
 yabai -m config right_padding 6
@@ -47,3 +47,36 @@ yabai -m rule --add app="^LINE$" manage=off
 
 yabai -m config active_window_border_color   0xff775759
 yabai -m config normal_window_border_color   0xff555555
+
+# --- 16인치(2056px) & 델 모니터 맞춤 패딩 설정 ---
+
+setup_padding() {
+  # MAC_PAD: 노치 높이 고려 (보통 44~40)
+  # DELL_PAD: 메뉴바 높이 (보통 26)
+  MAC_PAD=6
+  DELL_PAD=26
+
+  yabai -m query --displays | jq -c '.[]' | while read -r display; do
+    id=$(echo "$display" | jq '.id')
+    width=$(echo "$display" | jq '.frame.w')
+
+    # [조건문 수정] 너비가 정확히 2056이면 내장 맥북으로 인식
+    # bc -l을 사용하여 정확한 비교 수행
+    if (( $(echo "$width == 2056" | bc -l) )); then
+      # 맥북 (노치 O)
+      yabai -m config --display $id top_padding $MAC_PAD
+      # 해당 디스플레이의 스페이스 강제 적용
+      yabai -m query --spaces --display $id | jq -r '.[].index' | xargs -I{} yabai -m config --space {} top_padding $MAC_PAD
+    else
+      # 델 모니터 (그 외 나머지)
+      yabai -m config --display $id top_padding $DELL_PAD
+      yabai -m query --spaces --display $id | jq -r '.[].index' | xargs -I{} yabai -m config --space {} top_padding $DELL_PAD
+    fi
+  done
+}
+
+setup_padding
+
+# 이벤트 리스너: 모니터 연결/해제 시 자동 재적용
+yabai -m signal --add event=display_added action="source ~/.yabairc"
+yabai -m signal --add event=space_created action="source ~/.yabairc"
