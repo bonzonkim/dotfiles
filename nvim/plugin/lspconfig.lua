@@ -44,6 +44,11 @@ vim.lsp.config.templ = {
 -- Terraform
 vim.lsp.config.terraformls = {}
 
+-- gh actions
+vim.lsp.config.gh_actions_ls = {
+  filetypes = { "yaml.ghaction" }
+}
+
 -- Enable all LSP servers
 vim.lsp.enable({
   'html',
