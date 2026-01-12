@@ -54,7 +54,7 @@ setup_padding() {
   # MAC_PAD: 노치 높이 고려 (보통 44~40)
   # DELL_PAD: 메뉴바 높이 (보통 26)
   MAC_PAD=6
-  DELL_PAD=26
+  DELL_PAD=35
 
   yabai -m query --displays | jq -c '.[]' | while read -r display; do
     id=$(echo "$display" | jq '.id')
