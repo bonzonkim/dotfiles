@@ -44,33 +44,38 @@ yabai -m rule --add app="^Calendar$" manage=off
 yabai -m rule --add app="^Finder$" manage=off
 yabai -m rule --add app="^Dictionary$" manage=off
 yabai -m rule --add app="^LINE$" manage=off
+yabai -m rule --add app="^Mail$" manage=off
 
 yabai -m config active_window_border_color   0xff775759
 yabai -m config normal_window_border_color   0xff555555
 
-# --- 16인치(2056px) & 델 모니터 맞춤 패딩 설정 ---
+# --- Per-display top padding (MacBook vs external monitors) ---
 
 setup_padding() {
-  # MAC_PAD: 노치 높이 고려 (보통 44~40)
-  # DELL_PAD: 메뉴바 높이 (보통 26)
-  MAC_PAD=6
-  DELL_PAD=35
+  # Only top padding is adjusted per-display
+  MAC_TOP=5
+  DELL_TOP=35
 
   yabai -m query --displays | jq -c '.[]' | while read -r display; do
     id=$(echo "$display" | jq '.id')
     width=$(echo "$display" | jq '.frame.w')
 
-    # [조건문 수정] 너비가 정확히 2056이면 내장 맥북으로 인식
-    # bc -l을 사용하여 정확한 비교 수행
-    if (( $(echo "$width == 2056" | bc -l) )); then
-      # 맥북 (노치 O)
-      yabai -m config --display $id top_padding $MAC_PAD
-      # 해당 디스플레이의 스페이스 강제 적용
-      yabai -m query --spaces --display $id | jq -r '.[].index' | xargs -I{} yabai -m config --space {} top_padding $MAC_PAD
+    # convert width to integer (handles floats like 2056.0000)
+    w_int=$(echo "$width" | awk '{printf("%d", $1)}')
+
+    # Treat narrow displays (<=2100px) as the built-in MacBook display
+    if [ "$w_int" -le 2100 ]; then
+      yabai -m config --display "$id" top_padding $MAC_TOP
+
+      yabai -m query --spaces --display "$id" | jq -r '.[].index' | while read -r s; do
+        yabai -m config --space "$s" top_padding $MAC_TOP
+      done
     else
-      # 델 모니터 (그 외 나머지)
-      yabai -m config --display $id top_padding $DELL_PAD
-      yabai -m query --spaces --display $id | jq -r '.[].index' | xargs -I{} yabai -m config --space {} top_padding $DELL_PAD
+      yabai -m config --display "$id" top_padding $DELL_TOP
+
+      yabai -m query --spaces --display "$id" | jq -r '.[].index' | while read -r s; do
+        yabai -m config --space "$s" top_padding $DELL_TOP
+      done
     fi
   done
 }
