@@ -45,6 +45,7 @@ yabai -m rule --add app="^Finder$" manage=off
 yabai -m rule --add app="^Dictionary$" manage=off
 yabai -m rule --add app="^LINE$" manage=off
 yabai -m rule --add app="^Mail$" manage=off
+yabai -m rule --add app="^Scheduler$" manage=off
 
 yabai -m config active_window_border_color   0xff775759
 yabai -m config normal_window_border_color   0xff555555
@@ -53,8 +54,8 @@ yabai -m config normal_window_border_color   0xff555555
 
 setup_padding() {
   # Only top padding is adjusted per-display
-  MAC_TOP=5
-  DELL_TOP=35
+  MAC_TOP=1
+  DELL_TOP=36
 
   yabai -m query --displays | jq -c '.[]' | while read -r display; do
     id=$(echo "$display" | jq '.id')
