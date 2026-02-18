@@ -1,0 +1,21 @@
+local status, xcodebuild = pcall(require, "xcodebuild")
+if (not status) then return end
+
+xcodebuild.setup({})
+
+vim.keymap.set("n", "<leader>xr", "<cmd>XcodebuildBuildRun<CR>", { silent = true })
+vim.keymap.set("n", "<leader>xt", "<cmd>XcodebuildTest<CR>", { silent = true })
+vim.keymap.set("n", "<leader>xd", "<cmd>XcodebuildDebug<CR>", { silent = true })
+vim.keymap.set("n", "<leader>xb", "<cmd>XcodebuildBuild<CR>", { silent = true })
+vim.keymap.set("n", "<leader>xl", "<cmd>XcodebuildToggleLogs<CR>", { silent = true })
+vim.keymap.set("n", "<leader>xc", "<cmd>XcodebuildToggleCodeCoverage<CR>", { silent = true })
+vim.keymap.set("n", "<leader>xC", "<cmd>XcodebuildShowCurrentConfig<CR>", { silent = true })
+vim.keymap.set("n", "<leader>xq", "<cmd>Telescope quickfix<CR>", { silent = true })
+vim.keymap.set("n", "<leader>xx", "<cmd>Telescope xcodebuild_picker<CR>", { silent = true })
+vim.keymap.set("n", "<leader>xp", "<cmd>Telescope xcodebuild_picker theme=dropdown<CR>", { silent = true })
+vim.keymap.set("n", "<leader>xe", "<cmd>Telescope xcodebuild_picker actions=project_manager<CR>", { silent = true })
+vim.keymap.set("n", "<leader>xv", "<cmd>Telescope xcodebuild_picker actions=select_device<CR>", { silent = true })
+vim.keymap.set("n", "<leader>xo", "<cmd>Telescope xcodebuild_picker actions=show_build_settings<CR>", { silent = true })
+vim.keymap.set("n", "<leader>xm", "<cmd>Telescope xcodebuild_picker actions=show_scheme_manager<CR>", { silent = true })
+vim.keymap.set("n", "<leader>xf", "<cmd>Telescope xcodebuild_picker actions=show_file_manager<CR>", { silent = true })
+vim.keymap.set("n", "<leader>xh", "<cmd>Telescope xcodebuild_picker actions=toggle_in_between_builds<CR>", { silent = true })
