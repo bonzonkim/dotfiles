@@ -5,7 +5,7 @@ local act = wezterm.action
 
 return {
   --color_scheme = "Solarized (dark) (terminal.sexy)",
-  --color_scheme = "Tokyo Night",
+  color_scheme = "Tokyo Night",
   enable_tab_bar = false,
   font = wezterm.font("MesloLGS Nerd Font", {weight="Bold", stretch="Normal", style="Normal"}),
   font_size = 18.0,
