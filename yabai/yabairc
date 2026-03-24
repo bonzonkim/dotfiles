@@ -54,8 +54,8 @@ yabai -m config normal_window_border_color   0xff555555
 
 setup_padding() {
   # Only top padding is adjusted per-display
-  MAC_TOP=1
-  DELL_TOP=36
+  MAC_TOP=35
+  DELL_TOP=200
 
   yabai -m query --displays | jq -c '.[]' | while read -r display; do
     id=$(echo "$display" | jq '.id')
