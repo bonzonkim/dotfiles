@@ -5,7 +5,7 @@ yabai -m config layout bsp
 yabai -m config window_placement second_child
 
 # padding set to 12px
-# yabai -m config top_padding 33
+yabai -m config top_padding 6
 yabai -m config bottom_padding 6
 yabai -m config left_padding 6
 yabai -m config right_padding 6
@@ -50,34 +50,28 @@ yabai -m rule --add app="^Scheduler$" manage=off
 yabai -m config active_window_border_color   0xff775759
 yabai -m config normal_window_border_color   0xff555555
 
-# --- Per-display top padding (MacBook vs external monitors) ---
+# --- Per-display top padding (landscape vs portrait displays) ---
 
 setup_padding() {
-  # Only top padding is adjusted per-display
-  MAC_TOP=35
-  DELL_TOP=200
+  LANDSCAPE_TOP=6
+  PORTRAIT_TOP=35
 
   yabai -m query --displays | jq -c '.[]' | while read -r display; do
-    id=$(echo "$display" | jq '.id')
-    width=$(echo "$display" | jq '.frame.w')
+    id=$(echo "$display" | jq -r '.id')
+    width=$(echo "$display" | jq -r '.frame.w | floor')
+    height=$(echo "$display" | jq -r '.frame.h | floor')
 
-    # convert width to integer (handles floats like 2056.0000)
-    w_int=$(echo "$width" | awk '{printf("%d", $1)}')
-
-    # Treat narrow displays (<=2100px) as the built-in MacBook display
-    if [ "$w_int" -le 2100 ]; then
-      yabai -m config --display "$id" top_padding $MAC_TOP
-
-      yabai -m query --spaces --display "$id" | jq -r '.[].index' | while read -r s; do
-        yabai -m config --space "$s" top_padding $MAC_TOP
-      done
+    if [ "$width" -gt "$height" ]; then
+      top_padding=$LANDSCAPE_TOP
     else
-      yabai -m config --display "$id" top_padding $DELL_TOP
-
-      yabai -m query --spaces --display "$id" | jq -r '.[].index' | while read -r s; do
-        yabai -m config --space "$s" top_padding $DELL_TOP
-      done
+      top_padding=$PORTRAIT_TOP
     fi
+
+    yabai -m config --display "$id" top_padding "$top_padding"
+
+    yabai -m query --spaces --display "$id" | jq -r '.[].index' | while read -r space; do
+      yabai -m config --space "$space" top_padding "$top_padding"
+    done
   done
 }
 
@@ -85,4 +79,5 @@ setup_padding
 
 # 이벤트 리스너: 모니터 연결/해제 시 자동 재적용
 yabai -m signal --add event=display_added action="source ~/.yabairc"
+yabai -m signal --add event=display_removed action="source ~/.yabairc"
 yabai -m signal --add event=space_created action="source ~/.yabairc"
