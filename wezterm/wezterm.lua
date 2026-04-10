@@ -3,25 +3,33 @@ if (not status) then return end
 
 local act = wezterm.action
 
+function Toggle_theme (window, pane)
+  local light_scheme = "Catppuccin Latte (Gogh)"
+  local dark_scheme = "kanagawabones"
+  local overrides = window:get_config_overrides() or {}
+  wezterm.log_info("Current color scheme is: ", overrides.color_scheme)
+
+  if (overrides.color_scheme == light_scheme) then
+    wezterm.log_info("Current color scheme is: ", overrides.color_scheme)
+    overrides.color_scheme = dark_scheme
+
+  else
+    wezterm.log_info("Setting to Light ", overrides.color_scheme)
+    overrides.color_scheme = light_scheme
+  end
+  window:set_config_overrides(overrides)
+end
+
+-- toggle light/dark scheme with CTRL+l
+wezterm.on("toggle-dark-mode", function(window,pane)
+  Toggle_theme(window, pane)
+end)
+
 return {
-  --color_scheme = "Solarized (dark) (terminal.sexy)",
-  color_scheme = "Tokyo Night",
+  color_scheme = "kanagawabones",
   enable_tab_bar = false,
   font = wezterm.font("MesloLGS Nerd Font", {weight="Bold", stretch="Normal", style="Normal"}),
   font_size = 18.0,
---  colors = {
---    cursor_bg = "#808080"
---  },
-
---  background = {
---    {
---      source = {
---        File = "/Users/b9/Desktop/kelly/pics/wallpaper/wallhaven-7pgm59.png",
---      },
---      width = '100%',
---      hsb = { brightness = 0.1 },
---    },
---  },
 
   -- Transparency and blur settings
   window_background_opacity = 0.9,
@@ -57,6 +65,9 @@ return {
         key = 'f',
         mods = 'ALT',
       },
+    },
+    {
+      key="q", mods="CTRL", action=wezterm.action{EmitEvent="toggle-dark-mode"},
     },
   }
 }
