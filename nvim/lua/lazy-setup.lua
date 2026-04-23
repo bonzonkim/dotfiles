@@ -203,9 +203,6 @@ require("lazy").setup({
   {
     "NLKNguyen/papercolor-theme"
   },
-  {
-  "camspiers/snap",
-  },
 },
 {
   install = { colorscheme = { "tokyonight" } },
