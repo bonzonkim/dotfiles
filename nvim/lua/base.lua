@@ -29,6 +29,15 @@ vim.opt.backspace = { 'start', 'eol', 'indent' }
 vim.opt.path:append { '**' } -- Finding files - Search down into subfolders
 vim.opt.wildignore:append { '*/node_modules/*' }
 vim.opt.mouse = 'a'
+vim.filetype.add({
+  pattern = {
+    -- 해당 경로 하위의 yaml, yml 파일은 'yaml.ghaction'이라는 별도 타입으로 인식
+    ['.*/%.github/workflows/.*%.yml'] = 'yaml.ghaction',
+    ['.*/%.github/workflows/.*%.yaml'] = 'yaml.ghaction',
+    ['.*/%.github/actions/.*%.yml'] = 'yaml.ghaction',
+    ['.*/%.github/actions/.*%.yaml'] = 'yaml.ghaction',
+  },
+})
 
 vim.opt.signcolumn = 'yes'
 vim.api.nvim_exec([[

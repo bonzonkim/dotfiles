@@ -44,6 +44,14 @@ vim.lsp.config.templ = {
 -- Terraform
 vim.lsp.config.terraformls = {}
 
+-- Swift (SourceKit-LSP)
+vim.lsp.config.sourcekit = {}
+
+-- gh actions
+vim.lsp.config.gh_actions_ls = {
+  filetypes = { "yaml.ghaction" }
+}
+
 -- Enable all LSP servers
 vim.lsp.enable({
   'html',
@@ -56,6 +64,7 @@ vim.lsp.enable({
   'bashls',
   'templ',
   'terraformls',
+  'sourcekit',
 })
 
 -- Terraform filetype detection
