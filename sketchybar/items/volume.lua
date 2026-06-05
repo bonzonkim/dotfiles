@@ -70,6 +70,23 @@ volume_slider:subscribe("volume_change", function(env)
   volume_slider:set({ slider = { percentage = volume } })
 end)
 
+-- Populate icon/slider on load instead of waiting for the first volume_change.
+Sbar.exec("osascript -e 'output volume of (get volume settings)'", function(result)
+  local volume = tonumber(result) or 0
+  local icon = icons.volume._0
+  if volume > 60 then
+    icon = icons.volume._100
+  elseif volume > 30 then
+    icon = icons.volume._66
+  elseif volume > 10 then
+    icon = icons.volume._33
+  elseif volume > 0 then
+    icon = icons.volume._10
+  end
+  volume_icon:set({ label = icon })
+  volume_slider:set({ slider = { percentage = volume } })
+end)
+
 local function animate_slider_width(width)
   Sbar.animate("tanh", 30.0, function()
     volume_slider:set({ slider = { width = width }})
