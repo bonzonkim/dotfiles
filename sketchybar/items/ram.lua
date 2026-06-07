@@ -23,9 +23,16 @@ local ram = Sbar.add("graph", "widgets.ram", 42, {
     border_color = { alpha = 0 },
     drawing = true,
   },
-  icon = { string = icons.memory },
+  icon = {
+    string = "MEM",
+    font = {
+      family = settings.font.numbers,
+      style = settings.font.style_map["Bold"],
+      size = 10.0,
+    },
+  },
   label = {
-    string = "RAM ??%",
+    string = "??%",
     font = {
       family = settings.font.numbers,
       style = settings.font.style_map["Medium"],
