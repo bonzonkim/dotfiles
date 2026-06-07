@@ -1,0 +1,12 @@
+{
+    "diagnostics.globals": [
+        "SBAR",
+        "_json_str",
+        "_json_arr",
+        "_json_opt_int",
+        "_json_opt_bool"
+    ],
+    "workspace.library": [
+        "~/.local/share/sketchybar_lua"
+    ]
+}

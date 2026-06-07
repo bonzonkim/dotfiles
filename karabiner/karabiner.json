@@ -170,16 +170,6 @@
                         "description": "Swap backspace, \\ and |",
                         "manipulators": [
                             {
-                                "conditions": [
-                                    {
-                                        "identifiers": [
-                                            { "vendor_id": 13364 },
-                                            { "vendor_id": 76 },
-                                            { "vendor_id": 1452 }
-                                        ],
-                                        "type": "device_if"
-                                    }
-                                ],
                                 "from": {
                                     "key_code": "delete_or_backspace",
                                     "modifiers": { "optional": ["any"] }
@@ -188,16 +178,6 @@
                                 "type": "basic"
                             },
                             {
-                                "conditions": [
-                                    {
-                                        "identifiers": [
-                                            { "vendor_id": 13364 },
-                                            { "vendor_id": 76 },
-                                            { "vendor_id": 1452 }
-                                        ],
-                                        "type": "device_if"
-                                    }
-                                ],
                                 "from": {
                                     "key_code": "backslash",
                                     "modifiers": { "optional": ["any"] }
@@ -206,16 +186,6 @@
                                 "type": "basic"
                             },
                             {
-                                "conditions": [
-                                    {
-                                        "identifiers": [
-                                            { "vendor_id": 13364 },
-                                            { "vendor_id": 76 },
-                                            { "vendor_id": 1452 }
-                                        ],
-                                        "type": "device_if"
-                                    }
-                                ],
                                 "from": {
                                     "key_code": "backslash",
                                     "modifiers": {
@@ -223,7 +193,7 @@
                                         "optional": ["any"]
                                     }
                                 },
-                                "to": [{ "key_code": "backslash" }],
+                                "to": [{ "key_code": "backslash", "modifiers": ["left_shift"] }],
                                 "type": "basic"
                             }
                         ]
@@ -245,6 +215,27 @@
                                 "type": "basic"
                             }
                         ]
+                    },
+                    {
+                        "description": "TEST: BT Game Keyboard right_option -> a",
+                        "manipulators": [
+                            {
+                                "type": "basic",
+                                "from": {
+                                    "key_code": "right_option",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to": [{ "key_code": "a" }],
+                                "conditions": [
+                                    {
+                                        "type": "device_if",
+                                        "identifiers": [
+                                            { "vendor_id": 1452, "product_id": 591 }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
                     }
                 ]
             },
@@ -255,6 +246,14 @@
                         "is_pointing_device": true,
                         "product_id": 384,
                         "vendor_id": 13364
+                    },
+                    "ignore": false
+                },
+                {
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "product_id": 591,
+                        "vendor_id": 1452
                     },
                     "ignore": false
                 }
