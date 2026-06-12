@@ -50,34 +50,17 @@ yabai -m rule --add app="^Scheduler$" manage=off
 yabai -m config active_window_border_color   0xff775759
 yabai -m config normal_window_border_color   0xff555555
 
-# --- Per-display top padding (landscape vs portrait displays) ---
+# --- Per-display top padding (main vs external) ---
+# Padding logic lives in repad.sh so signal actions can re-pad without
+# re-sourcing this whole file (which would stack signals + rules every wake).
+chmod +x "$HOME/.config/yabai/repad.sh" 2>/dev/null
+"$HOME/.config/yabai/repad.sh"
 
-setup_padding() {
-  LANDSCAPE_TOP=6
-  PORTRAIT_TOP=35
-
-  yabai -m query --displays | jq -c '.[]' | while read -r display; do
-    id=$(echo "$display" | jq -r '.id')
-    width=$(echo "$display" | jq -r '.frame.w | floor')
-    height=$(echo "$display" | jq -r '.frame.h | floor')
-
-    if [ "$width" -gt "$height" ]; then
-      top_padding=$LANDSCAPE_TOP
-    else
-      top_padding=$PORTRAIT_TOP
-    fi
-
-    yabai -m config --display "$id" top_padding "$top_padding"
-
-    yabai -m query --spaces --display "$id" | jq -r '.[].index' | while read -r space; do
-      yabai -m config --space "$space" top_padding "$top_padding"
-    done
-  done
-}
-
-setup_padding
-
-# 이벤트 리스너: 모니터 연결/해제 시 자동 재적용
-yabai -m signal --add event=display_added action="source ~/.yabairc"
-yabai -m signal --add event=display_removed action="source ~/.yabairc"
-yabai -m signal --add event=space_created action="source ~/.yabairc"
+# 이벤트 리스너: 모니터 연결/해제/공간 생성 시 padding 재적용.
+# Labeled + removed-before-add so re-running this file never duplicates them.
+for lbl in repad_display_added repad_display_removed repad_space_created; do
+  yabai -m signal --remove "$lbl" 2>/dev/null
+done
+yabai -m signal --add event=display_added   label=repad_display_added   action="\$HOME/.config/yabai/repad.sh"
+yabai -m signal --add event=display_removed label=repad_display_removed action="\$HOME/.config/yabai/repad.sh"
+yabai -m signal --add event=space_created   label=repad_space_created   action="\$HOME/.config/yabai/repad.sh"

@@ -31,7 +31,7 @@ return function(Y)
             local out = {}
             for _, w in ipairs(wins) do
                 if Y.query.is_real_window(w) then
-                    table.insert(out, { space = w.space, app = w.app, id = w.id })
+                    table.insert(out, { space = w.space, app = w.app, id = w.id, focus = w["has-focus"] == true })
                 end
             end
             table.sort(out, function(a, b)
@@ -53,9 +53,11 @@ return function(Y)
                 for _, s in ipairs(spaces) do
                     layout[s.index] = { has_focus = s["has-focus"] == true, apps = {} }
                 end
+                -- Only surface the currently focused window's app (single icon),
+                -- not every window on the space.
                 for _, w in ipairs(wins) do
                     local slot = layout[w.space]
-                    if slot then table.insert(slot.apps, w.app) end
+                    if slot and w.focus then table.insert(slot.apps, w.app) end
                 end
                 cb(layout)
             end)
