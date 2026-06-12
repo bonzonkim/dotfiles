@@ -156,11 +156,43 @@ local watcher = Sbar.add("item", "yabai.watcher", {
     padding_right = 0,
 })
 
+-- Coalesce bursts of yabai events into a single refresh. On wake every window
+-- re-registers and fires a storm of events; without debounce each one spawns
+-- its own queries + 30-frame animation, which is the wake lag spike.
+local refresh_pending = false
+local function schedule_refresh()
+    if IS_SYSTEM_SLEEPING then return end
+    if refresh_pending then return end
+    refresh_pending = true
+    Sbar.delay(0.12, function()
+        refresh_pending = false
+        refresh()
+    end)
+end
+
+-- We now draw only the focused app per space, so focus changes must re-render
+-- too. The yabai_* signals are not wired into sketchybar, so rely on
+-- sketchybar's native events (front_app_switched / space_windows_change /
+-- space_change) which fire without any yabai signal plumbing.
 local layout_events = { table.unpack(Yabai.events.for_layout_refresh) }
-table.insert(layout_events, "system_woke")
+for _, e in ipairs(Yabai.events.for_focus) do
+    table.insert(layout_events, e)
+end
+table.insert(layout_events, "front_app_switched")
+table.insert(layout_events, "space_windows_change")
+table.insert(layout_events, "space_change")
 table.insert(layout_events, "forced")
 
-watcher:subscribe(layout_events, function(_) refresh() end)
+watcher:subscribe(layout_events, function(_) schedule_refresh() end)
+
+-- Wake gets dedicated handling: yabai and the displays need a moment to settle,
+-- and the bar can fail to redraw. Wait, re-assert the bar, then refresh once.
+watcher:subscribe("system_woke", function(_)
+    Sbar.delay(1.0, function()
+        Sbar.bar({ hidden = false })
+        refresh()
+    end)
+end)
 
 Sbar.delay(0.5, function()
     build_pool()
