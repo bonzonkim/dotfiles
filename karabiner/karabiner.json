@@ -178,11 +178,9 @@
                             "to": [{ "key_code": "backslash" }],
                             "conditions": [
                               {
-                                "type": "device_if",
+                                "type": "device_unless",
                                 "identifiers": [
-                                  { "vendor_id": 13364 },
-                                  { "vendor_id": 76 },
-                                  { "vendor_id": 1452 }
+                                  { "vendor_id": 1278, "product_id": 33 }
                                 ]
                               }
                             ]
@@ -196,11 +194,9 @@
                             "to": [{ "key_code": "delete_or_backspace" }],
                             "conditions": [
                               {
-                                "type": "device_if",
+                                "type": "device_unless",
                                 "identifiers": [
-                                  { "vendor_id": 13364 },
-                                  { "vendor_id": 76 },
-                                  { "vendor_id": 1452 }
+                                  { "vendor_id": 1278, "product_id": 33 }
                                 ]
                               }
                             ]
@@ -214,11 +210,9 @@
                             "to": [{ "key_code": "backslash", "modifiers": ["left_shift"] }],
                             "conditions": [
                               {
-                                "type": "device_if",
+                                "type": "device_unless",
                                 "identifiers": [
-                                  { "vendor_id": 13364 },
-                                  { "vendor_id": 76 },
-                                  { "vendor_id": 1452 }
+                                  { "vendor_id": 1278, "product_id": 33 }
                                 ]
                               }
                             ]

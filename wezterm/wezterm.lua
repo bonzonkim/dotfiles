@@ -6,6 +6,7 @@ local act = wezterm.action
 function Toggle_theme (window, pane)
   local light_scheme = "Catppuccin Latte (Gogh)"
   local dark_scheme = "kanagawabones"
+  --local dark_scheme = "Tokyo Night Storm"
   local overrides = window:get_config_overrides() or {}
   wezterm.log_info("Current color scheme is: ", overrides.color_scheme)
 

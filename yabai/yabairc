@@ -5,7 +5,7 @@ yabai -m config layout bsp
 yabai -m config window_placement second_child
 
 # padding set to 12px
-# yabai -m config top_padding 33
+yabai -m config top_padding 6
 yabai -m config bottom_padding 6
 yabai -m config left_padding 6
 yabai -m config right_padding 6
@@ -31,7 +31,7 @@ yabai -m config mouse_action1 move
 yabai -m config mouse_action2 resize
 
 # when window is dropped in center of another window, swap them (on edges it will split it)
-yabai -m config mouse_drop_action swap
+yabai -m mouse_drop_action swap
 
 
 # disable specific apps
@@ -47,37 +47,20 @@ yabai -m rule --add app="^LINE$" manage=off
 yabai -m rule --add app="^Mail$" manage=off
 yabai -m rule --add app="^Scheduler$" manage=off
 
-# Border color settings were removed from yabai v7.
+yabai -m config active_window_border_color   0xff775759
+yabai -m config normal_window_border_color   0xff555555
 
-# --- Per-display top padding (MacBook vs external monitors) ---
+# --- Per-display top padding (main vs external) ---
+# Padding logic lives in repad.sh so signal actions can re-pad without
+# re-sourcing this whole file (which would stack signals + rules every wake).
+chmod +x "$HOME/.config/yabai/repad.sh" 2>/dev/null
+"$HOME/.config/yabai/repad.sh"
 
-setup_padding() {
-  # Only top padding is adjusted per-display
-  MAC_TOP=42
-  DELL_TOP=42
-
-  yabai -m query --displays | jq -c '.[]' | while read -r display; do
-    id=$(echo "$display" | jq '.id')
-    width=$(echo "$display" | jq '.frame.w')
-
-    # convert width to integer (handles floats like 2056.0000)
-    w_int=$(echo "$width" | awk '{printf("%d", $1)}')
-
-    # Treat narrow displays (<=2100px) as the built-in MacBook display
-    if [ "$w_int" -le 2100 ]; then
-      yabai -m query --spaces --display "$id" | jq -r '.[].index' | while read -r s; do
-        yabai -m config --space "$s" top_padding $MAC_TOP
-      done
-    else
-      yabai -m query --spaces --display "$id" | jq -r '.[].index' | while read -r s; do
-        yabai -m config --space "$s" top_padding $DELL_TOP
-      done
-    fi
-  done
-}
-
-setup_padding
-
-# 이벤트 리스너: 모니터 연결/해제 시 자동 재적용
-yabai -m signal --add event=display_added action="source ~/.config/yabai/yabairc"
-yabai -m signal --add event=space_created action="source ~/.config/yabai/yabairc"
+# 이벤트 리스너: 모니터 연결/해제/공간 생성 시 padding 재적용.
+# Labeled + removed-before-add so re-running this file never duplicates them.
+for lbl in repad_display_added repad_display_removed repad_space_created; do
+  yabai -m signal --remove "$lbl" 2>/dev/null
+done
+yabai -m signal --add event=display_added   label=repad_display_added   action="\$HOME/.config/yabai/repad.sh"
+yabai -m signal --add event=display_removed label=repad_display_removed action="\$HOME/.config/yabai/repad.sh"
+yabai -m signal --add event=space_created   label=repad_space_created   action="\$HOME/.config/yabai/repad.sh"
