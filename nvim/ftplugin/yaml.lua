@@ -1,50 +1,8 @@
---require("lspconfig").yamlls.setup {
---  settings = {
---    yaml = {
---      schemas = {
---        kubernetes = "k8s-*.yaml",
---        ["http://json.schemastore.org/github-workflow"] = ".github/workflows/*",
---        ["http://json.schemastore.org/github-action"] = ".github/action.{yml,yaml}",
---        ["http://json.schemastore.org/ansible-stable-2.9"] = "roles/tasks/**/*.{yml,yaml}",
---        ["http://json.schemastore.org/prettierrc"] = ".prettierrc.{yml,yaml}",
---        ["http://json.schemastore.org/kustomization"] = "kustomization.{yml,yaml}",
---        ["http://json.schemastore.org/chart"] = "Chart.{yml,yaml}",
---        ["http://json.schemastore.org/circleciconfig"] = ".circleci/**/*.{yml,yaml}",
---      },
---    },
---  },
---}
+-- yamlls configuration lives in plugin/lspconfig.lua (schemastore + yaml-companion)
 
--- LSP Configuration
-vim.lsp.config("yamlls", {
-  settings = {
-    yaml = {
-      schemas = {
-        ["https://raw.githubusercontent.com/yannh/kubernetes-json-schema/master/v1.30.0-standalone-strict/all.json"] = {
-          "*.yaml",
-          "*.yml",
-          "kubernetes/*.yaml",
-          "kubernetes/*.yml",
-          "kube/*.yaml",
-          "kube/*.yml",
-        },
-        ["http://json.schemastore.org/github-workflow"] = ".github/workflows/*",
-        ["http://json.schemastore.org/kustomization"] = "kustomization.{yml,yaml}",
-        ["http://json.schemastore.org/github-action"] = ".github/action.{yml,yaml}",
-        ["http://json.schemastore.org/ansible-stable-2.9"] = "roles/tasks/**/*.{yml,yaml}",
-        ["http://json.schemastore.org/chart"] = "Chart.{yml,yaml}",
-        ["http://json.schemastore.org/circleciconfig"] = ".circleci/**/*.{yml,yaml}",
-      },
-      schemaStore = {
-        enable = true,
-        url = "https://www.schemastore.org/api/json/catalog.json",
-      },
-      validate = true,
-      completion = true,
-      hover = true,
-    },
-  },
-})
+-- Pick a schema for the current buffer
+vim.keymap.set("n", "<leader>ys", "<cmd>Telescope yaml_schema<CR>",
+  { buffer = true, desc = "Select YAML schema" })
 
 -- Autocompletion
 local cmpStatus, cmp = pcall(require, "cmp")
@@ -52,8 +10,8 @@ if not cmpStatus then return end
 
 cmp.setup.buffer {
   sources = {
-    { name = "vsnip" },
     { name = "nvim_lsp" },
+    { name = "luasnip" },
     { name = "path" },
     {
       name = "buffer",

@@ -5,11 +5,16 @@ yabai -m config layout bsp
 yabai -m config window_placement second_child
 
 # padding set to 12px
-yabai -m config top_padding 6
+yabai -m config top_padding 4 
 yabai -m config bottom_padding 6
 yabai -m config left_padding 6
 yabai -m config right_padding 6
 yabai -m config window_gap 7
+
+# Reserve sketchybar strip on ALL displays (height 30 + y_offset 6 ~= 40).
+# Tells yabai about the bar explicitly so windows never cover it, regardless
+# of macOS menu-bar reservation state (sleep/wake, fullscreen, space switch).
+yabai -m config external_bar all:40:0
 
 #yabai -m config top_padding                  20
 #yabai -m config bottom_padding               20
@@ -50,17 +55,6 @@ yabai -m rule --add app="^Scheduler$" manage=off
 yabai -m config active_window_border_color   0xff775759
 yabai -m config normal_window_border_color   0xff555555
 
-# --- Per-display top padding (main vs external) ---
-# Padding logic lives in repad.sh so signal actions can re-pad without
-# re-sourcing this whole file (which would stack signals + rules every wake).
-chmod +x "$HOME/.config/yabai/repad.sh" 2>/dev/null
-"$HOME/.config/yabai/repad.sh"
-
-# 이벤트 리스너: 모니터 연결/해제/공간 생성 시 padding 재적용.
-# Labeled + removed-before-add so re-running this file never duplicates them.
-for lbl in repad_display_added repad_display_removed repad_space_created; do
-  yabai -m signal --remove "$lbl" 2>/dev/null
-done
-yabai -m signal --add event=display_added   label=repad_display_added   action="\$HOME/.config/yabai/repad.sh"
-yabai -m signal --add event=display_removed label=repad_display_removed action="\$HOME/.config/yabai/repad.sh"
-yabai -m signal --add event=space_created   label=repad_space_created   action="\$HOME/.config/yabai/repad.sh"
+# Per-display repad hack removed: external_bar all:40:0 reserves the bar strip
+# on every display automatically (including hotplugged ones), so the old
+# repad.sh + signals are no longer needed.

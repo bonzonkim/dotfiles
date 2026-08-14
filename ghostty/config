@@ -1,25 +1,35 @@
-# Font
-#font-family = "MesloLGS Nerd Font Mono Bold"
+term = xterm-256color
+theme = tokyonight
+
+macos-icon = xray
+
+macos-titlebar-style = tabs
+
 font-family = "MesloLGS Nerd Font Bold"
-
-## Window
-##window-decoration = false
-mouse-hide-while-typing = true
-window-padding-x = 0
-window-padding-y = 0
-macos-window-shadow = false
-
-## Clipboard
-clipboard-read = "allow"
-clipboard-paste-protection = false
-
-## Background
-background-opacity = 0.75
-background-blur-radius = 40
-
-## Theme
-theme = TokyoNight Storm
+font-thicken = true
 font-size = 18
 
-adjust-cell-width = 0
-adjust-cell-height = 20%
+mouse-hide-while-typing = true
+
+window-decoration = false
+window-save-state = always
+
+background = 000000
+background-opacity = 0.2
+background-blur-radius = 20
+
+# keybinds
+# keybind = global:cmd+s=toggle_quick_terminal
+# keybind = ctrl+h=goto_split:left
+# keybind = ctrl+j=goto_split:bottom
+# keybind = ctrl+k=goto_split:top
+# keybind = ctrl+l=goto_split:right
+# 
+# keybind = cmd+h=previous_tab
+# keybind = cmd+l=next_tab
+# 
+# keybind = super+ctrl+h=resize_split:left,10
+# keybind = super+ctrl+j=resize_split:down,10
+# keybind = super+ctrl+k=resize_split:up,10
+# keybind = super+ctrl+l=resize_split:right,10
+# keybind = shift+enter=text:\n

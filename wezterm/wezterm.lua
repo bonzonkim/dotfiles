@@ -68,7 +68,18 @@ return {
       },
     },
     {
-      key="q", mods="CTRL", action=wezterm.action{EmitEvent="toggle-dark-mode"},
+      key = "q",
+      mods = "CTRL",
+      action = wezterm.action 
+      {
+        EmitEvent = "toggle-dark-mode"
+      },
     },
+    {
+    key = 'Enter',
+    mods = 'CTRL',
+    -- Send a standard line feed or map to a specific action
+    action = wezterm.action.SendString('\n'),
+  },
   }
 }
