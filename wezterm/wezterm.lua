@@ -3,31 +3,53 @@ if (not status) then return end
 
 local act = wezterm.action
 
-function Toggle_theme (window, pane)
-  local light_scheme = "Catppuccin Latte (Gogh)"
-  local dark_scheme = "kanagawabones"
-  --local dark_scheme = "Tokyo Night Storm"
-  local overrides = window:get_config_overrides() or {}
-  wezterm.log_info("Current color scheme is: ", overrides.color_scheme)
+-- nvim watches this file, so writing it here is what keeps both themes in sync
+local theme_state_file = wezterm.home_dir .. "/.local/state/theme-mode"
+local light_scheme = "Catppuccin Latte (Gogh)"
+local dark_scheme = "kanagawabones"
+--local dark_scheme = "Tokyo Night Storm"
 
-  if (overrides.color_scheme == light_scheme) then
-    wezterm.log_info("Current color scheme is: ", overrides.color_scheme)
-    overrides.color_scheme = dark_scheme
+local function read_mode()
+  local f = io.open(theme_state_file, "r")
+  if not f then return "dark" end
+  local mode = f:read("*l")
+  f:close()
+  return mode == "light" and "light" or "dark"
+end
 
-  else
-    wezterm.log_info("Setting to Light ", overrides.color_scheme)
-    overrides.color_scheme = light_scheme
+local function write_mode(mode)
+  local f = io.open(theme_state_file, "w")
+  if not f then
+    os.execute("mkdir -p " .. theme_state_file:match("(.*)/"))
+    f = io.open(theme_state_file, "w")
   end
+  if not f then
+    wezterm.log_error("cannot write " .. theme_state_file)
+    return
+  end
+  f:write(mode .. "\n")
+  f:close()
+end
+
+local function scheme_for(mode)
+  return mode == "light" and light_scheme or dark_scheme
+end
+
+function Toggle_theme (window, pane)
+  local mode = read_mode() == "light" and "dark" or "light"
+  write_mode(mode)
+  local overrides = window:get_config_overrides() or {}
+  overrides.color_scheme = scheme_for(mode)
   window:set_config_overrides(overrides)
 end
 
--- toggle light/dark scheme with CTRL+l
+-- toggle light/dark scheme with CTRL+q
 wezterm.on("toggle-dark-mode", function(window,pane)
   Toggle_theme(window, pane)
 end)
 
 return {
-  color_scheme = "kanagawabones",
+  color_scheme = scheme_for(read_mode()),
   enable_tab_bar = false,
   font = wezterm.font("MesloLGS Nerd Font", {weight="Bold", stretch="Normal", style="Normal"}),
   font_size = 18.0,
