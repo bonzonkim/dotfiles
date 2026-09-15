@@ -3,7 +3,8 @@ local settings = require("settings")
 local Yabai    = require("yabaiapi")
 
 local MAX_WS   = 10
-local MAX_APPS = 12
+-- Only the focused window's app is painted per space, so one slot is enough; every slot costs a WindowServer window per display that sketchybar rebuilds on wake.
+local MAX_APPS = 1
 
 Yabai.attach(Sbar)
 Yabai.register_events()
@@ -61,7 +62,7 @@ local function make_app(i, j)
         padding_right = 2,
         background    = {
             drawing = true,
-            image   = { scale = 0.80, clip = 0.8 },
+            image   = { scale = 0.80 },
         },
     })
 end
@@ -73,7 +74,6 @@ local function make_bracket(i, members)
             drawing       = false,
             color         = colors.bg05,
             border_color  = colors.bg1,
-            blur_radius   = 32,
             border_width  = 1,
             height        = 32,
             corner_radius = 10,
@@ -106,11 +106,9 @@ local function paint_slot(i, apps, active)
                 drawing    = true,
                 background = {
                     drawing     = true,
-                    blur_radius = 12,
                     image       = {
                         string = "app." .. app,
                         scale  = active and 1 or 0.80,
-                        clip   = 0.8,
                     },
                     x_offset    = -1,
                 },
