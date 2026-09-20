@@ -145,7 +145,21 @@ require("lazy").setup({
   end,
   ft = { "markdown" },
   },
-  { "mistricky/codesnap.nvim", build = "make" },
+  {
+    "mistricky/codesnap.nvim",
+    build = "make",
+    cmd = {
+      "CodeSnap",
+      "CodeSnapASCII",
+      "CodeSnapHighlight",
+      "CodeSnapHighlightSave",
+      "CodeSnapSave",
+    },
+    opts = {
+      watermark = "",
+      bg_padding = 0,
+    },
+  },
   { "wojciech-kulik/xcodebuild.nvim" },
   {
     "bngarren/checkmate.nvim",
@@ -154,13 +168,13 @@ require("lazy").setup({
     },
   },
   { "dimaportenko/telescope-simulators.nvim" },
-  --{
-  --"bonzonkim/strudel.nvim",
-  --build = "npm install --prefix osc-bridge",
-  --config = function()
-  --  require("strudel").setup()
-  --end
-  --},
+  {
+  "bonzonkim/strudel.nvim",
+  build = "npm install --prefix osc-bridge",
+  config = function()
+    require("strudel").setup()
+  end
+  },
   {
     "ThePrimeagen/99",
       config = function()

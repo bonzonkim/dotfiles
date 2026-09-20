@@ -1,7 +1,1 @@
-local status, snap = pcall(require, "codesnap")
-if not status then return end
-
-snap.setup({
-  watermark = "",
-  bg_padding = 0,
-})
+-- Configured in lua/lazy-setup.lua so codesnap can stay lazy-loaded.

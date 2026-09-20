@@ -5,6 +5,7 @@ local icons        = require("icons")
 local ARTWORK_PATH = "/tmp/sketchybar_spotify_artwork.jpg"
 
 local SCRIPT       = [[
+pgrep -xq Spotify || { echo "stopped|||"; exit 0; }
 osascript -e '
 tell application "System Events"
   set spotifyRunning to (name of processes) contains "Spotify"
@@ -181,10 +182,14 @@ local function set_artwork(url)
     end)
 end
 
+-- Same track state as last poll means nothing to redraw, so skip the 45-frame animation.
+local last_raw = nil
 local function refresh()
     Sbar.exec(SCRIPT, function(raw)
         if not raw then return end
         raw = raw:gsub("%s+$", "")
+        if raw == last_raw then return end
+        last_raw = raw
 
         local state, artist, title, url = raw:match("^(%S+)%|(.-)%|(.-)%|(.*)$")
         if not state then return end

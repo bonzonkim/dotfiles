@@ -5,6 +5,7 @@ yabai -m config layout bsp
 yabai -m config window_placement second_child
 
 # padding set to 12px
+yabai -m config external_bar all:40:0
 yabai -m config top_padding 6
 yabai -m config bottom_padding 6
 yabai -m config left_padding 6
@@ -31,7 +32,7 @@ yabai -m config mouse_action1 move
 yabai -m config mouse_action2 resize
 
 # when window is dropped in center of another window, swap them (on edges it will split it)
-yabai -m mouse_drop_action swap
+yabai -m config mouse_drop_action swap
 
 
 # disable specific apps
@@ -46,9 +47,6 @@ yabai -m rule --add app="^Dictionary$" manage=off
 yabai -m rule --add app="^LINE$" manage=off
 yabai -m rule --add app="^Mail$" manage=off
 yabai -m rule --add app="^Scheduler$" manage=off
-
-yabai -m config active_window_border_color   0xff775759
-yabai -m config normal_window_border_color   0xff555555
 
 # --- Per-display top padding (main vs external) ---
 # Padding logic lives in repad.sh so signal actions can re-pad without
