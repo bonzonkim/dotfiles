@@ -168,13 +168,13 @@ require("lazy").setup({
     },
   },
   { "dimaportenko/telescope-simulators.nvim" },
-  {
-  "bonzonkim/strudel.nvim",
-  build = "npm install --prefix osc-bridge",
-  config = function()
-    require("strudel").setup()
-  end
-  },
+  --{
+  --"bonzonkim/strudel.nvim",
+ -- build = "npm install --prefix osc-bridge",
+ -- config = function()
+ --   require("strudel").setup()
+ -- end
+ -- },
   {
     "ThePrimeagen/99",
       config = function()
