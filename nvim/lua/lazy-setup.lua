@@ -203,8 +203,11 @@ require("lazy").setup({
   {
     "NLKNguyen/papercolor-theme"
   },
-  "coder/claudecode.nvim",
-  dependencies = { "folke/snacks.nvim" },
+  {
+    "olimorris/codecompanion.nvim",
+    version = "^19.0.0",
+    dependencies = { "nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter" },
+  },
 },
 {
   install = { colorscheme = { "tokyonight" } },

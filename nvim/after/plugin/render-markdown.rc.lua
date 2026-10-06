@@ -1,7 +1,7 @@
 local status, renderMarkdown = pcall(require, "render-markdown")
-if not status or renderMarkdown then return end
+if not status then return end
 
 renderMarkdown.setup({
-  file_types = { 'markdown', 'quarto' },
+  file_types = { 'markdown', 'quarto', 'codecompanion' },
   enabled = true,
 })
