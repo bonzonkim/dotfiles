@@ -1,4 +1,4 @@
-local status, ts = pcall(require, "nvim-treesitter.configs")
+local status, ts = pcall(require, "nvim-treesitter")
 if (not status) then return end
 vim.filetype.add({
   extension = {
@@ -11,28 +11,25 @@ vim.filetype.add({
   },
 })
 
-ts.setup {
-  highlight = {
-    enable = true,
-    disable = {},
-  },
-  indent = {
-    enable = true,
-    disable = {},
-  },
-  ensure_installed = {
-    "go",
-    "tsx",
-    "toml",
-    "php",
-    "python",
-    "json",
-    "yaml",
-    "css",
-    "html",
-    "lua"
-  },
-}
+ts.install({
+  "go",
+  "tsx",
+  "toml",
+  "php",
+  "python",
+  "json",
+  "yaml",
+  "css",
+  "html",
+  "lua",
+})
 
-local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
-parser_config.tsx.filetype_to_parsername = { "javascript", "typescript.tsx" }
+vim.api.nvim_create_autocmd("FileType", {
+  callback = function(args)
+    if not pcall(vim.treesitter.start, args.buf) then return end
+    local lang = vim.treesitter.language.get_lang(args.match)
+    if lang and vim.treesitter.query.get(lang, "indents") then
+      vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+    end
+  end,
+})

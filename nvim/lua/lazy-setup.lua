@@ -23,6 +23,7 @@ require("lazy").setup({
   { "kyazdani42/nvim-web-devicons" },
   {
     "nvim-treesitter/nvim-treesitter",
+    lazy = false,
     build = ":TSUpdate"
   },
   { "lukas-reineke/indent-blankline.nvim" },
